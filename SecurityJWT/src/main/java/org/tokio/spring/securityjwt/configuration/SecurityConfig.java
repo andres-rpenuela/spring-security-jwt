@@ -18,6 +18,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Desactiva CSRF para simplificar el acceso a la consola
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll() // Permite acceso a la consola de H2 sin autenticación
+                        .requestMatchers("/swagger-ui/**","/v3/api-docs").permitAll()
                         .anyRequest().authenticated() // Protege otras rutas
                 )
                 .headers(headers -> headers
