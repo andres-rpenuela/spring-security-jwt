@@ -32,7 +32,7 @@ public class UserRestController {
     private final UserService userService;
 
 
-    @GetMapping(value = "/users",produces = "application/json",consumes = "application/json")
+    @GetMapping(value = "/users",produces = "application/json")
     @Operation(summary = "User given email")
     @ApiResponses(value={
             @ApiResponse(responseCode = "200", description = "User with id given",content =
@@ -46,10 +46,11 @@ public class UserRestController {
             )})
     @Parameter(name = "email",description = "Email of user",schema = @Schema(implementation = Long.class))
     public ResponseEntity<UserDTO> getUserByEmail(@RequestParam(name = "email") String email){
-        return ResponseEntity.ok( userService.findByEmail(email));
+        UserDTO userDTO = userService.findByEmail(email);
+        return ResponseEntity.ok( userDTO );
     }
 
-    @GetMapping("/users/login-test")
+    @GetMapping(value = "/users/login-test",produces = "application/json")
     @Operation(summary = "User given email")
     @ApiResponses(value={
             @ApiResponse(responseCode = "200", description = "User with id given",content =
@@ -63,7 +64,9 @@ public class UserRestController {
             )})
     @Parameter(name = "email",description = "Email of user",schema = @Schema(implementation = Long.class))
     public ResponseEntity<Pair<UserDTO,String>> getUserLoginByEmail(@RequestParam(name = "email") String email){
-        return ResponseEntity.ok( userService.findUserAndPasswordByEmail(email).orElseThrow(()-> new UserNotFoundException("User with email %s not found".formatted(email))));
+        Pair<UserDTO,String> userAndPassword = userService.findUserAndPasswordByEmail(email)
+                .orElseThrow(()-> new UserNotFoundException("User with email %s not found".formatted(email)));
+        return ResponseEntity.ok( userAndPassword );
     }
 
     @ExceptionHandler(UserNotFoundException.class)
