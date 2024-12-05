@@ -4,3 +4,21 @@ INSERT INTO products (id,price, stock, version, category, description, name) VAL
 INSERT INTO products (id,price, stock, version, category, description, name) VALUES(3,3.12, 0, 0, 'sport', 'pelota playa', 'pelota q-max');
 INSERT INTO products (id,price, stock, version, category, description, name) VALUES(4,1, 40, 0, 'eat', 'pan cristal 4ud', 'pack pan cristal');
 INSERT INTO products (id,price, stock, version, category, description, name) VALUES(5,3.12, 10, 0, 'short', 'camiseta roja', 'camiseta q-max');
+
+INSERT INTO PERMISSIONS (name,description,created_at) VALUES ('READ','READ_PERMISSION',now());
+INSERT INTO PERMISSIONS (name,description,created_at) VALUES ('WRITE','WRITE_PERMISSION',now());
+INSERT INTO PERMISSIONS (name,description,created_at) VALUES ('DELETE','DELETE_PERMISSION',now());
+
+INSERT INTO ROLES (name,description,created_at) VALUES ('USER','ROLE_USER',now());
+INSERT INTO ROLES (name,description,created_at) VALUES ('ADMIN','ROLE_ADMIN',now());
+INSERT INTO ROLES (name,description,created_at) VALUES ('MODERATOR','ROLE_MODERATOR',now());
+
+INSERT INTO ROLES_PERMISSIONS (permission_id,role_id) values (1,1);
+INSERT INTO ROLES_PERMISSIONS (permission_id,role_id) values (2,1),(2,2),(2,3);
+
+INSERT INTO USERS (USERNAME ,PASSWORD ,FIRST_NAME ,LAST_NAME ,EMAIL ,BIRTHDAY ,CREATED_AT ,UPDATED_AT ) VALUES ('user','user','andres','ruiz','user@bla.com','1992-07-06',now(),now());
+
+INSERT INTO USERS (USERNAME ,PASSWORD ,FIRST_NAME ,LAST_NAME ,EMAIL ,BIRTHDAY ,CREATED_AT ,UPDATED_AT ) VALUES ('admin','admin','andres','ruiz','admin@bla.com','1992-07-06',now(),now())
+
+INSERT INTO USERS_ROLES (user_id,role_id) VALUES (1,1);
+INSERT INTO USERS_ROLES (user_id,role_id) VALUES (2,2);
