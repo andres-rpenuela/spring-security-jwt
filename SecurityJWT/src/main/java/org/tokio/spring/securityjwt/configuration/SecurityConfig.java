@@ -11,7 +11,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 public class SecurityConfig {
 
-    @Bean
+    @Bean("securityFilterChain")
     @Order(1)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -26,6 +26,8 @@ public class SecurityConfig {
                         .frameOptions(frameOptions -> frameOptions.disable()) // Permite el uso de frames para H2
                 );
         http.formLogin(Customizer.withDefaults());
+        http.httpBasic(Customizer.withDefaults()); // Basic Auth, allow username-password in header field authentication
         return http.build();
     }
+
 }

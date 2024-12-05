@@ -32,7 +32,7 @@ public class UserRestController {
     private final UserService userService;
 
 
-    @GetMapping("/users")
+    @GetMapping(value = "/users",produces = "application/json",consumes = "application/json")
     @Operation(summary = "User given email")
     @ApiResponses(value={
             @ApiResponse(responseCode = "200", description = "User with id given",content =
