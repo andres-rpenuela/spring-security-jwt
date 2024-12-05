@@ -47,7 +47,8 @@ public class BasicUserDetailsService implements UserDetailsService {
 
         return new org.springframework.security.core.userdetails.User(
                 userDto.getEmail(), // identidad
-                "{noop}%s".formatted(password), // credenciales (no ecriptado)
+                //"{noop}%s".formatted(password), // credenciales (no encriptado)
+                password, // credenciales (encriptado)
                 simpleGrantedAuthorities// autoridades
         );
     }

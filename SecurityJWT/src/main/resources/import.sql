@@ -16,9 +16,11 @@ INSERT INTO ROLES (name,description,created_at) VALUES ('MODERATOR','ROLE_MODERA
 INSERT INTO ROLES_PERMISSIONS (permission_id,role_id) values (1,1);
 INSERT INTO ROLES_PERMISSIONS (permission_id,role_id) values (2,1),(2,2),(2,3);
 
-INSERT INTO USERS (USERNAME ,PASSWORD ,FIRST_NAME ,LAST_NAME ,EMAIL ,BIRTHDAY ,CREATED_AT ,UPDATED_AT ) VALUES ('user','user','andres','ruiz','user@bla.com','1992-07-06',now(),now());
+-- pwd= user
+INSERT INTO USERS (USERNAME ,PASSWORD ,FIRST_NAME ,LAST_NAME ,EMAIL ,BIRTHDAY ,CREATED_AT ,UPDATED_AT ) VALUES ('user','$2a$10$aOH7D6kU5Q/8.bzWrNY6AOnbLbMUTzA47CRkRfNmFxelEdhqi1RxS','andres','ruiz','user@bla.com','1992-07-06',now(),now());
 
-INSERT INTO USERS (USERNAME ,PASSWORD ,FIRST_NAME ,LAST_NAME ,EMAIL ,BIRTHDAY ,CREATED_AT ,UPDATED_AT ) VALUES ('admin','admin','andres','ruiz','admin@bla.com','1992-07-06',now(),now())
+-- pwd= admin
+INSERT INTO USERS (USERNAME ,PASSWORD ,FIRST_NAME ,LAST_NAME ,EMAIL ,BIRTHDAY ,CREATED_AT ,UPDATED_AT ) VALUES ('admin','$2a$10$6Q6x57YKczY.7I7lyacP6e6RwmjhizgR2icGk9heGsBHPMppHxb/K','andres','ruiz','admin@bla.com','1992-07-06',now(),now())
 
 INSERT INTO USERS_ROLES (user_id,role_id) VALUES (1,1);
 INSERT INTO USERS_ROLES (user_id,role_id) VALUES (2,2);
