@@ -10,6 +10,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Schema(description = "Data transfer object for User")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RoleDTO {
 
