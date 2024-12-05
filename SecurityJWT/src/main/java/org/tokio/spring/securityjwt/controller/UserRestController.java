@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.internal.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class UserRestController {
     @Operation(summary = "User given email")
     @ApiResponses(value={
             @ApiResponse(responseCode = "200", description = "User with id given",content =
-            @Content(array = @ArraySchema(schema = @Schema(implementation = ProductDTO.class)))
+            @Content(array = @ArraySchema(schema = @Schema(implementation = UserDTO.class)))
             ),
             @ApiResponse(responseCode = "400", description = "User not found",content =
             @Content(schema =  @Schema(implementation = ResponseError.class))
@@ -47,6 +48,23 @@ public class UserRestController {
     @Parameter(name = "email",description = "Email of user",schema = @Schema(implementation = Long.class))
     public ResponseEntity<UserDTO> getUserByEmail(@RequestParam(name = "email") String email){
         return ResponseEntity.ok( userService.findByEmail(email));
+    }
+
+    @GetMapping("/users/login-test")
+    @Operation(summary = "User given email")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "User with id given",content =
+            @Content(array = @ArraySchema(schema = @Schema(implementation = Pair.class)))
+            ),
+            @ApiResponse(responseCode = "400", description = "User not found",content =
+            @Content(schema =  @Schema(implementation = ResponseError.class))
+            ),
+            @ApiResponse(responseCode = "500", description = "Error intern",content =
+            @Content(schema =  @Schema(implementation = ResponseError.class))
+            )})
+    @Parameter(name = "email",description = "Email of user",schema = @Schema(implementation = Long.class))
+    public ResponseEntity<Pair<UserDTO,String>> getUserLoginByEmail(@RequestParam(name = "email") String email){
+        return ResponseEntity.ok( userService.findUserAndPasswordByEmail(email).orElseThrow(()-> new UserNotFoundException("User with email %s not found".formatted(email))));
     }
 
     @ExceptionHandler(UserNotFoundException.class)
