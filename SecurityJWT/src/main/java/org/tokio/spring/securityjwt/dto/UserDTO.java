@@ -24,5 +24,5 @@ public class UserDTO {
     private String lastName;
     private String email;
     private LocalDate birthday;
-    private Set<RoleDTO> roleDTO;
+    private Set<RoleDTO> roleDTOS;
 }

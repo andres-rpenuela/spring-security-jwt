@@ -11,7 +11,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 public class SecurityConfig {
 
-    @Bean
+    @Bean("securityFilterChain")
     @Order(1)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -19,12 +19,15 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll() // Permite acceso a la consola de H2 sin autenticación
                         .requestMatchers("/swagger-ui/**","/v3/api-docs").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated() // Protege otras rutas
                 )
                 .headers(headers -> headers
                         .frameOptions(frameOptions -> frameOptions.disable()) // Permite el uso de frames para H2
                 );
         http.formLogin(Customizer.withDefaults());
+        http.httpBasic(Customizer.withDefaults()); // Basic Auth, allow username-password in header field authentication
         return http.build();
     }
+
 }
