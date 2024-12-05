@@ -18,6 +18,6 @@ public class UserDTOMapperConfiguration {
 
     private void init() {
         this.modelMapper.typeMap(User.class, UserDTO.class)
-                .addMappings(mapping -> mapping.using(new CollectionRoleToSetRoleDTOConverter()).map(User::getRoles,UserDTO::setRoleDTO));
+                .addMappings(mapping -> mapping.using(new CollectionRoleToSetRoleDTOConverter()).map(User::getRoles,UserDTO::setRoleDTOS));
     }
 }

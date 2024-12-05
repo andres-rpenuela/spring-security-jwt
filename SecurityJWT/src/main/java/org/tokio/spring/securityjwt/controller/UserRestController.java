@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.internal.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,6 @@ import org.tokio.spring.securityjwt.core.constans.ErrorCode;
 import org.tokio.spring.securityjwt.core.exception.ProductNotFoundException;
 import org.tokio.spring.securityjwt.core.exception.UserNotFoundException;
 import org.tokio.spring.securityjwt.core.response.ResponseError;
-import org.tokio.spring.securityjwt.dto.ProductDTO;
 import org.tokio.spring.securityjwt.dto.UserDTO;
 import org.tokio.spring.securityjwt.service.UserService;
 
