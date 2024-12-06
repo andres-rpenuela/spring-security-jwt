@@ -33,6 +33,7 @@
         <tsid-creator.version>5.2.6</tsid-creator.version>
         <model-mapper.version>3.2.1</model-mapper.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
+        <jjwt.version>0.12.5</jjwt.version>
         <spring.version>3.4.0</spring.version>
         <springdoc-openapi.version>2.7.0</springdoc-openapi.version>
     </properties>
@@ -99,6 +100,21 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jjwt.version}</version>
         </dependency>
 
         <!-- mappers -->
