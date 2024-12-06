@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.tokio.spring.securityjwt.core.constans.ErrorCode;
 import org.tokio.spring.securityjwt.core.exception.ProductNotFoundException;
@@ -41,6 +42,7 @@ public class ProductRestController {
             @Content(schema =  @Schema(implementation = ResponseError.class))
             )})
     @Parameter(name = "category",description = "Filter by category of list. This param is optional.")
+    @PreAuthorize(value = "hasAnyAuthority('ADMIN')")
     public ResponseEntity<Set<ProductDTO>> getAllProductsHandler(@RequestParam(name = "category", defaultValue = "") String category) {
         return ResponseEntity.status(HttpStatus.OK).body(productService.getProductsByCategory(category));
     }
